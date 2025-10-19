@@ -62,10 +62,10 @@ int main()
 	//int divisor;
 	//cin >> divisor;
 
-	//int quotent = divident / divisor;
+	//int quotient = divident / divisor;
 	//int remainder = divident % divisor;
 
-	//cout << "The quotent of the division is " << quotent << endl;
+	//cout << "The quotient of the division is " << quotient << endl;
 	//cout << "The remainder of the division is " << remainder << endl;
 
 	// 7
@@ -110,9 +110,9 @@ int main()
 
 	int determinant = pow(b, 2) - 4 * a * c;
 
-	int x1, x2;
-	x1 = (-b - sqrt(determinant)) / 2 * a;
-	x2 = (-b + sqrt(determinant)) / 2 * a;
+	double x1, x2;
+	x1 = (-b - sqrt(determinant)) / (2 * a);
+	x2 = (-b + sqrt(determinant)) / (2 * a);
 
 	cout << "x1 = " << x1 << ", x2 = " << x2 << endl;*/
 
@@ -156,26 +156,26 @@ int main()
 	//cout << "The max number is: " << max << endl;
 
 	// 12
-	/*const double SECONDS_TO_DAYS_RATE = 1.0 / (60 * 60 * 24);
-	const double SECONDS_TO_HOURS_RATE = 1.0 / (60 * 60);
-	const double SECONDS_TO_MINUTES_RATE = 1.0 / 60;
+	//const int SECONDS_PER_DAY = 60 * 60 * 24;
+	//const int SECONDS_PER_HOUR = 60 * 60;
+	//const int SECONDS_PER_MINUTES = 60;
 
-	int seconds;
-	cout << "Seconds: ";
-	cin >> seconds;
+	//int seconds;
+	//cout << "Seconds: ";
+	//cin >> seconds;
 
-	int days, hours, minutes;
-	days = seconds * SECONDS_TO_DAYS_RATE;
-	seconds -= days / SECONDS_TO_DAYS_RATE;
+	//int days, hours, minutes;
+	//days = seconds / SECONDS_PER_DAY;
+	//seconds %= SECONDS_PER_DAY;
 
-	hours = seconds * SECONDS_TO_HOURS_RATE;
-	seconds -= hours / SECONDS_TO_HOURS_RATE;
+	//hours = seconds / SECONDS_PER_HOUR;
+	//seconds %= SECONDS_PER_HOUR;
 
-	minutes = seconds * SECONDS_TO_MINUTES_RATE;
-	seconds -= minutes / SECONDS_TO_MINUTES_RATE;
+	//minutes = seconds / SECONDS_PER_MINUTES;
+	//seconds %= SECONDS_PER_MINUTES;
 
-	cout << days << " days, " << hours << " hours, " 
-		 << minutes << " minutes and " << seconds << " seconds";*/
+	//cout << days << " days, " << hours << " hours, " 
+	//	 << minutes << " minutes and " << seconds << " seconds";
 
 	// 13
 	/*int x1, y1, x2, y2;

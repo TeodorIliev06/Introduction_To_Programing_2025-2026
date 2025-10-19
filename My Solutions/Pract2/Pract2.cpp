@@ -116,46 +116,46 @@ int main()
 	cout << (isValidTriangle ? "The triangle is valid" : "The triangle is NOT valid");*/
 
 	// 6
-	int a, b, c;
-	cin >> a >> b >> c;
+	//int a, b, c;
+	//cin >> a >> b >> c;
 
-	// Null checks
-	if (a == 0)
-	{
-		if (b == 0)
-		{
-			if (c == 0)
-			{
-				cout << "Every ""x"" is a solution";
-			}
-			else
-			{
-				cout << "No real solutions";
-			}
-		}
-		else
-		{
-			double x = -c / b;
-			cout << "x = " << x;
-		}
+	//// Null checks
+	//if (a == 0)
+	//{
+	//	if (b == 0)
+	//	{
+	//		if (c == 0)
+	//		{
+	//			cout << "Every ""x"" is a solution";
+	//		}
+	//		else
+	//		{
+	//			cout << "No real solutions";
+	//		}
+	//	}
+	//	else
+	//	{
+	//		double x = -c / b;
+	//		cout << "x = " << x;
+	//	}
 
-		return 0;
-	}
+	//	return 0;
+	//}
 
-	// Base case
-	int determinant = pow(b, 2) - 4 * a * c;
+	//// Base case
+	//int determinant = pow(b, 2) - 4 * a * c;
 
-	if (determinant < 0)
-	{
-		cout << "No real solutions";
-		return 0;
-	}
+	//if (determinant < 0)
+	//{
+	//	cout << "No real solutions";
+	//	return 0;
+	//}
 
-	double x1, x2;
-	x1 = (-b - sqrt(determinant)) / (2 * a);
-	x2 = (-b + sqrt(determinant)) / (2 * a);
+	//double x1, x2;
+	//x1 = (-b - sqrt(determinant)) / (2 * a);
+	//x2 = (-b + sqrt(determinant)) / (2 * a);
 
-	cout << "x1 = " << x1 << ", x2 = " << x2 << endl;
+	//cout << "x1 = " << x1 << ", x2 = " << x2 << endl;
 
 	// 7
 	/*const int MIN_LATIN_LETTER_BOUND = 'A';
