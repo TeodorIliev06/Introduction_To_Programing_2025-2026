@@ -44,7 +44,7 @@ int main()
 	{
 		cout << "Less than 100";
 	}
-	else if (number >= 100 && number < 200)
+	else if (number < 200)
 	{
 		cout << "Between 100 and 200";
 	}
@@ -60,15 +60,15 @@ int main()
 	{
 		cout << "slow";
 	}
-	else if (speed > 10 && speed <= 50)
+	else if (speed <= 50)
 	{
 		cout << "average";
 	}
-	else if (speed > 50 && speed <= 150)
+	else if (speed <= 150)
 	{
 		cout << "fast";
 	}
-	else if (speed > 150 && speed <= 1000)
+	else if (speed <= 1000)
 	{
 		cout << "ultra fast";
 	}
@@ -189,14 +189,14 @@ int main()
 	int radius, pointX, pointY;
 	cin >> radius >> pointX >> pointY;
 
-	int distanceSqaured = pow(pointX, 2) + pow(pointY, 2);
-	int radiusSquared = pow(radius, 2);
+	int distanceSquared = pointX * pointX + pointY * pointY;
+	int radiusSquared = radius * radius;
 
-	if (distanceSqaured > radiusSquared)
+	if (distanceSquared > radiusSquared)
 	{
 		cout << "Out of the circle";
 	}
-	else if (distanceSqaured == radiusSquared) {
+	else if (distanceSquared == radiusSquared) {
 		cout << "On the circle";
 	}
 	else
