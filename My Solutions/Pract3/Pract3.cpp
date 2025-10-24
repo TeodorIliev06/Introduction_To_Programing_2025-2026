@@ -243,5 +243,132 @@ int main()
 		sum = firstNum + secondNum;
 	}*/
 
+	// 12
+	//int num;
+	//cin >> num;
+
+	//int temp = num, digitCount = 0, output = 0;
+
+	//while (temp != 0)
+	//{
+	//	temp /= 10;
+	//	digitCount++;
+	//}
+
+	//// Split the number in left and right parts
+	//// Use division and modulo to split evenly
+	//// Handle both ODD and EVEN cases when adding to leftCount
+	//int removeCount = (digitCount % 2 == 0) ? 2 : 1;
+	//int leftCount = (digitCount - removeCount) / 2 + (digitCount - removeCount) % 2;
+	//int rightCount = (digitCount - removeCount) / 2;
+
+	//int leftPart = num / (int)pow(10, digitCount - leftCount);
+	//int rightPart = num % (int)pow(10, rightCount);
+
+	//output = leftPart * pow(10, rightCount) + rightPart;
+
+	//cout << output;
+
+	// 13
+	/*int firstNum, secondNum;
+	cin >> firstNum >> secondNum;
+
+	for (int i = firstNum; i <= secondNum; i++)
+	{
+		bool isPrime = true;
+		for (int j = 2; j < sqrt(i); j++)
+		{
+			if (i % j == 0)
+			{
+				isPrime = false;
+				break;
+			}
+		}
+
+		if (isPrime)
+		{
+			cout << i << " ";
+		}
+	}*/
+
+	// 14
+	/*int num, check = 1;
+	cin >> num;
+
+	while (check <= num)
+	{
+		if (check == num)
+		{
+			cout << "true" << endl;
+			return 0;
+		}
+
+		check *= 2;
+	}
+
+	cout << "false" << endl;*/
+
+	// 15
+	/*int num, check = 1, ctr = 0;
+	cin >> num;
+
+	while (num > 0)
+	{
+		if (check > num)
+		{
+			num -= check / 2;
+			ctr--;
+
+			cout << "2^" << ctr << " + ";
+
+			check = 1;
+			ctr = 0;
+		}
+		else if (check == num)
+		{
+			cout << "2^" << ctr << endl;
+			return 0;
+		}
+		else
+		{
+			check *= 2;
+			ctr++;
+		}
+	}*/
+
+	// 16
+
+	// 17
+	int num;
+	cin >> num;
 	
+	int rowsCount = 2 * num - 1;
+
+	for (int row = 1; row <= rowsCount; row++)
+	{
+		int i = (row <= num) ? row : (2 * num - row);
+
+		// Left part
+		for (int j = 1; j <= i; j++)
+		{
+			cout << j << " ";
+		}
+
+		if (i < num)
+		{
+			//int repetitionCount = //TODO;
+			for (int j = 0; j < 2 * (num - i) + num; j++)
+			{
+				cout << " ";
+			}
+		}
+
+		// Right part
+		for (int j = i; j >= 1; j--)
+		{
+			cout << j << " ";
+		}
+
+		cout << endl;
+	}
 }
