@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -337,36 +338,166 @@ int main()
 	}*/
 
 	// 16
+	//const int LOWER_BOUND = -100;
+	//const int UPPER_BOUND = 100;
+
+	//int a, b, c, d, e;
+	//cin >> a >> b >> c >> d >> e;
+
+	//for (int i = LOWER_BOUND; i < UPPER_BOUND; i++)
+	//{
+	//	// Using Horner's method
+	//	int result = a;
+	//	result = result * i + b;
+	//	result = result * i + c;
+	//	result = result * i + d;
+	//	result = result * i + e;
+
+	//	if (result >= 0)
+	//	{
+	//		cout << i << " ";
+	//	}
+	//}
 
 	// 17
+	//unsigned int num;
+	//cin >> num;
+	//
+	//int rowsCount = 2 * num - 1;
+
+	//for (int row = 1; row <= rowsCount; row++)
+	//{
+	//	int i = (row <= num) ? row : (2 * num - row);
+
+	//	// Left part
+	//	for (int j = 1; j <= i; j++)
+	//	{
+	//		cout << j << " ";
+	//	}
+
+	//	// Middle part:
+	//	// i == num - dashes
+	//	// i != num - twice the gaps (with decrementation)
+	//	if (i == num)
+	//	{
+	//		// Middle row: dashes
+	//		for (int j = 0; j < num; j++)
+	//		{
+	//			cout << "- ";
+	//		}
+	//	}
+	//	else
+	//	{
+	//		int totalSpaces = 2 * (num - i) + num;
+	//		for (int j = 0; j < totalSpaces; j++)
+	//		{
+	//			cout << "  ";
+	//		}
+	//	}
+
+	//	// Right part
+	//	for (int j = i; j >= 1; j--)
+	//	{
+	//		cout << j << " ";
+	//	}
+
+	//	cout << endl;
+	//}
+
+	// 18
+	//int num;
+	//cin >> num;
+
+	//// Top border
+	//for (int i = 0; i < num + 2; i++)
+	//{
+	//	cout << '#';
+	//}
+	//cout << endl;
+
+	//// Top half
+	//for (int row = 0; row < num; row++)
+	//{
+	//	cout << '#';
+
+	//	for (int i = 0; i < num; i++)
+	//	{
+	//		cout << ((row + i) % num) + 1;
+	//	}
+
+	//	cout << '#' << endl;
+	//}
+
+	//// Middle row
+	//cout << '#';
+
+	//int xCount = (num % 2 == 0) ? 2 : 1;
+	//int middleSpaces = (num - xCount) / 2;
+
+	//for (int i = 0; i < middleSpaces; i++)
+	//{
+	//	cout << ' ';
+	//}
+
+	//for (int i = 0; i < xCount; i++)
+	//{
+	//	cout << 'X';
+	//}
+
+	//for (int i = 0; i < middleSpaces; i++)
+	//{
+	//	cout << ' ';
+
+	//}
+	//cout << '#' << endl;
+
+	//// Bottom half
+	//for (int row = num - 1; row >= 0; row--)
+	//{
+	//	cout << '#';
+
+	//	for (int i = 0; i < num; i++)
+	//	{
+	//		cout << ((row + i) % num) + 1;
+	//	}
+
+	//	cout << '#' << endl;
+	//}
+
+	//// Bottom border
+	//for (int i = 0; i < num + 2; i++)
+	//{
+	//	cout << '#';
+	//}
+	//cout << endl;
+
+	// 19
 	int num;
 	cin >> num;
-	
-	int rowsCount = 2 * num - 1;
 
-	for (int row = 1; row <= rowsCount; row++)
+	for (int row = 1; row <= num; row++)
 	{
-		int i = (row <= num) ? row : (2 * num - row);
-
-		// Left part
-		for (int j = 1; j <= i; j++)
+		for (int col = 1; col <= num; col++)
 		{
-			cout << j << " ";
-		}
+			int value;
 
-		if (i < num)
-		{
-			//int repetitionCount = //TODO;
-			for (int j = 0; j < 2 * (num - i) + num; j++)
+			// Odd col - go down
+			// Col 1: 1    2    ... n
+			// Col 3: 2n+1 2n+2 ... 3n
+			if (col % 2 != 0)
 			{
-				cout << " ";
+				value = (col - 1) * num + row;
 			}
-		}
 
-		// Right part
-		for (int j = i; j >= 1; j--)
-		{
-			cout << j << " ";
+			// Even col - go up
+			// Col 2:  n  n-1 ...    1
+			// Col 4: 4n 4n-1 ... 3n-1
+			else
+			{
+				value = col * num - row + 1;
+			}
+
+			cout << value << " ";
 		}
 
 		cout << endl;
