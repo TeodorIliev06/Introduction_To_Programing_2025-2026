@@ -166,6 +166,227 @@ bool areRadiusesEqual(int a, int b, int c, int d) {
 	return firstRadius == secondRadius;
 }
 
+int getAbsoluteValue(int num) {
+	return num < 0 ? -num : num;
+}
+
+int getDigitCount(int num) {
+	int ctr = 0;
+
+	while (num > 0)
+	{
+		num /= 10;
+		ctr++;
+	}
+
+	return ctr;
+}
+
+double getSideLength(int x1, int y1, int x2, int y2) {
+	return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+}
+
+int getConcatenatedNum(int firstNum, int secondNum) {
+	return firstNum * pow(10, getDigitCount(firstNum)) + secondNum;
+}
+
+int getReverseConcatenatedNum(int num) {
+	int reversed = 0, temp = num;
+
+	while (temp != 0)
+	{
+		reversed *= 10;
+
+		reversed += temp % 10;
+		temp /= 10;
+	}
+
+	return getConcatenatedNum(reversed, num);
+}
+
+int getPrimeDivisorsCount(int num)
+{
+	int count = 0;
+	int temp = num;
+
+	for (int i = 2; i <= sqrt(num); i++)
+	{
+		if (temp % i != 0)
+		{
+			continue;
+		}
+
+		count++;
+
+		// Remove duplicating prime divisors
+		while (temp % i == 0)
+		{
+			temp /= i;
+		}
+	}
+
+	// Check if there is a larger prime factor > sqrt(num)
+	if (temp > 1)
+	{
+		count++;
+	}
+
+	return count;
+}
+
+bool isSorted(unsigned int num) {
+	int temp;
+	int digitsCount = getDigitCount(num);
+
+	//Base case - less than 3 digits
+	if (digitsCount < 3)
+	{
+		return true;
+	}
+
+	// Check if it is ascending
+	bool isAscending = true;
+	temp = num;
+	while (temp > 0)
+	{
+		int lastDigit = temp % 10;
+		int secondToLastDigit = temp / 10 % 10;
+
+		if (lastDigit < secondToLastDigit)
+		{
+			isAscending = false;
+			break;
+		}
+
+		temp /= 10;
+	}
+
+	if (isAscending)
+	{
+		return true;
+	}
+
+	bool isDescending = true;
+	temp = num;
+	while (temp > 0)
+	{
+		//No need for further check if it has 1 digit
+		if (temp < 10)
+		{
+			break;
+		}
+
+		int lastDigit = temp % 10;
+		int secondToLastDigit = temp / 10 % 10;
+
+		if (lastDigit > secondToLastDigit)
+		{
+			isDescending = false;
+			break;
+		}
+
+		temp /= 10;
+	}
+
+	if (!isAscending && !isDescending)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool isWithEqualDigits(unsigned int num) {
+	bool areEqual = true;
+
+	while (num > 0)
+	{
+		//No need for further check if it has 1 digit
+		if (num < 10)
+		{
+			break;
+		}
+
+		int lastDigit = num % 10;
+		int secondToLastDigit = num / 10 % 10;
+
+		if (lastDigit != secondToLastDigit)
+		{
+			areEqual = false;
+			break;
+		}
+
+		num /= 10;
+	}
+
+	return areEqual;
+}
+
+int getNumWithSortedDigits(unsigned int num) {
+	int output = 0;
+
+	while (num > 0)
+	{
+		int digitToInsert = num % 10;
+		num /= 10;
+
+		int temp = output;
+		int position = 0;
+
+		// Traverse backwards to find insertion position
+		while (temp > 0)
+		{
+			int currentDigit = temp % 10;
+
+			if (digitToInsert >= currentDigit)
+			{
+				break;
+			}
+
+			position++;
+			temp /= 10;
+		}
+
+		// Split in 2 parts
+		// Insert: left part + digit + right part
+
+		int divisor = getCustomPow(10, position);
+		int leftPart = output / divisor;
+		int rightPart = output % divisor;
+
+		output = leftPart * getCustomPow(10, position + 1) + digitToInsert * divisor + rightPart;
+	}
+
+	return output;
+}
+
+bool isUpperLetter(char symbol) {
+	return (symbol >= 'A' && symbol <= 'Z');
+}
+
+// Get the capital letter by subtracting the const
+char toUpperCustom(char symbol) {
+	const int TO_LOWER_TO_UPPER = 32;
+
+	if (symbol < 'a' || symbol > 'z')
+	{
+		return symbol;
+	}
+
+	return (symbol - TO_LOWER_TO_UPPER);
+}
+
+int toDigit(char symbol) {
+	const int TO_DIGIT = 48;
+
+	if (symbol < '0' || symbol > '9')
+	{
+		return -1;
+	}
+
+	return symbol - TO_DIGIT;
+}
+
 int main()
 {
 #pragma region Examples
@@ -229,10 +450,99 @@ int main()
 	//cout << getCustomLog(base, argument) << endl;
 
 	// 9
-	int a, b, c, d;
-	cin >> a >> b >> c >> d;
+	//int a, b, c, d;
+	//cin >> a >> b >> c >> d;
 
-	cout << boolalpha << areRadiusesEqual(a, b, c, d) << endl;
+	//cout << boolalpha << areRadiusesEqual(a, b, c, d) << endl;
 #pragma endregion
 
+#pragma region Exercises
+	// 1
+	//int num;
+	//cin >> num;
+
+	//cout << getAbsoluteValue(num) << endl;
+
+	// 2
+	//int num;
+	//cin >> num;
+
+	//cout << getDigitCount(num) << endl;
+
+	// 3
+	//int x1, y1, x2, y2, x3, y3;
+	//cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+
+	//double sideA = getSideLength(x1, y1, x2, y2);
+	//double sideB = getSideLength(x2, y2, x3, y3);
+	//double sideC = getSideLength(x3, y3, x1, y1);
+
+	//cout << sideA + sideB + sideC << endl;
+
+	// 4
+	//int firstNum, secondNum;
+	//cin >> firstNum >> secondNum;
+
+	//cout << getConcatenatedNum(firstNum, secondNum) << endl;
+
+	// 5
+	//int num;
+	//cin >> num;
+
+	//cout << getReverseConcatenatedNum(num) << endl;
+
+	// 6
+	//int lowerBound, upperBound, primeDivisorsCount, output = 0;
+	//cin >> lowerBound >> upperBound >> primeDivisorsCount;
+
+	//for (int i = lowerBound; i <= upperBound; i++)
+	//{
+	//	int currentPrimeDivisorsCount = getPrimeDivisorsCount(i);
+
+	//	if (currentPrimeDivisorsCount == primeDivisorsCount)
+	//	{
+	//		output++;
+	//	}
+	//}
+
+	//cout << output << endl;
+
+	// 7
+	//unsigned int num;
+	//cin >> num;
+
+	//cout << boolalpha << isSorted(num) << endl;
+
+	// 8
+	//unsigned int num;
+	//cin >> num;
+
+	//cout << boolalpha << isWithEqualDigits(num) << endl;
+
+	// 9
+	//unsigned int num;
+	//cin >> num;
+
+	//cout << getNumWithSortedDigits(num) << endl;
+
+	// 10
+	//char symbol;
+	//cin >> symbol;
+
+	//cout << boolalpha << isUpperLetter(symbol) << endl;
+
+	// 11
+	//char symbol;
+	//cin >> symbol;
+
+	//cout << toUpperCustom(symbol) << endl;
+
+	// 12
+	//char symbol;
+	//cin >> symbol;
+
+	//cout << toDigit(symbol) << endl;
+
+	
+#pragma endregion
 }
