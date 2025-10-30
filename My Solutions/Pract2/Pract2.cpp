@@ -321,7 +321,7 @@ int main()
 	//int output = firstDigit * 100 + secondDigit * 10 + thirdDigit;
 
 	//cout << output;
-	
+
 	// 12
 	//int day, month;
 
