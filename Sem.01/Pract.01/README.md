@@ -1,3 +1,97 @@
+# Примери
+
+Какво ще се изпечат следните парчета код?
+
+1.
+```C++
+#include <iostream>
+
+int main()
+{
+  int first = 5;
+  int second = 4;
+  std::cout << first / second * 5 << std::endl;
+  std::cout << second / first * 5 << std::endl;
+}
+```
+2. 
+```C++
+#include <iostream>
+
+int main()
+{
+  int first = 14;
+  int second = 2;
+  std::cout << (first / second) % 3;
+}
+```
+3.
+```C++
+#include <iostream>
+
+int main()
+{
+  double first = 4.5;
+  double second = 4.3;
+  int result = first - second; 
+  std::cout << result;
+}
+```
+4. 
+```C++
+#include <iostream>
+
+int main()
+{
+  bool var = true;
+  std::cout << (var || false) << std::endl;
+  std::cout << !(var && true || 0);
+}
+```
+5.
+```C++
+#include <iostream>
+
+int main()
+{
+  int num = 10;
+  std::cout << (num / !num); 
+
+  std::cout << ((num - 2) || (num / !num)); 
+}
+```
+6.
+``` c++
+  int main()
+  {
+    float A = 5 / 9;
+    float B = 5.0 / 9.0;
+    float C = 5.0 / 9;
+    float D = 5 / 9.0;
+    std::cout << "A = "<< A << std::endl << "B = "<< B << std::endl << "C = "<< C << std::endl << "D = "<< D << std::endl;
+    return 0;
+}
+```
+7.
+```C++
+    int main()
+    {
+      int a = 3;
+      std::cout<< ++a++;
+      return 0;
+    }
+```
+
+8.
+```C++
+    int main()
+    {
+      int a = 3;
+      std::cout<< ++a++++;
+      return 0;
+    }
+```
+
 ## Задачи
 
 1. Напишете програма на C++, която извежда следния текст на екрана:   
