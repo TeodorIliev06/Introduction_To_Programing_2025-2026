@@ -139,7 +139,23 @@ int getLCD(int firstNum, int secondNum, int thirdNum) {
 }
 
 int getGCD(int a, int b, int c, int d) {
+	int minAB = min(a, b);
+	int minABC = min(minAB, c);
+	int minABCD = min(minABC, c);
 
+	while (minABCD > 0)
+	{
+		if (a % minABCD == 0 &&
+			b % minABCD == 0 &&
+			c % minABCD == 0 &&
+			d % minABCD == 0)
+		{
+			break;
+		}
+		minABCD--;
+	}
+
+	return minABCD;
 }
 
 int getConcatenatedNum(int firstNum, int secondNum) {
@@ -215,6 +231,26 @@ void calculate(int firstNum, int secondNum, char _operator) {
 	}
 }
 
+int getSumOfDigits(long long num) {
+	int sum = 0;
+
+	while (getNumLength((int)num) > 1)
+	{
+		int sum = 0;
+		long long temp = num;
+
+		while (temp > 0)
+		{
+			sum += temp % 10;
+			temp /= 10;
+		}
+
+		num = sum;
+	}
+
+	return sum;
+}
+
 bool isPrime(int num) {
 	for (int i = 2; i < sqrt(num); i++)
 	{
@@ -268,6 +304,73 @@ int getClosestPowerOf2(int num) {
 	{
 		return powerOf2 - 1;
 	}
+}
+
+void getPrimeNumbersInRange(int range) {
+	for (int i = 1; i <= range; i++)
+	{
+		if (isPrime(i))
+		{
+			cout << i << " ";
+		}
+	}
+
+	cout << endl;
+}
+
+bool isEqualToSumOfPrimeNumbers(int num) {
+	for (int i = 0; i < sqrt(num); i++)
+	{
+		for (int j = i; j < sqrt(num); j++)
+		{
+			if (!isPrime(i) || !isPrime(j))
+			{
+				continue;
+			}
+
+			if (i + j == num)
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+int sortDigits(int num) {
+	if (num == 0) return 0;
+
+	int result = 0;
+
+	while (num > 0) {
+		int digitToInsert = num % 10;
+		num /= 10;
+
+		// Find the correct position to insert the digit
+		int temp = result;
+		int position = 0;
+
+		// Traverse result from right to left to find insertion position
+		while (temp > 0) {
+			int currentDigit = temp % 10;
+			if (digitToInsert >= currentDigit) {
+				break;
+			}
+			position++;
+			temp /= 10;
+		}
+
+		// Split result into left and right parts
+		int divisor = pow(10, position);
+		int rightPart = result % divisor;
+		int leftPart = result / divisor;
+
+		// Insert: leftPart + digit + rightPart
+		result = leftPart * pow(10, position + 1) + digitToInsert * divisor + rightPart;
+	}
+
+	return result;
 }
 
 int main()
@@ -368,4 +471,58 @@ int main()
 	//cin >> firstNum >> secondNum >> _operator;
 
 	//calculate(firstNum, secondNum, _operator);
+
+	// 16
+
+
+	// 17
+	//const int LOWER_BOUND = 100;
+	//const int UPPER_BOUND = 100000;
+	//int num;
+	//cin >> num;
+
+	//while (!isInInterval(num, LOWER_BOUND, UPPER_BOUND))
+	//{
+	//	cout << "Please enter a valid num";
+	//	cin >> num;
+	//}
+
+	//cout << getClosestPowerOf2(num);
+
+	// 18
+	//int a, b, c, d;
+	//cin >> a >> b >> c >> d;
+
+	//cout << getGCD(a, b, c, d);
+
+	// 19
+	//long long num;
+	//cin >> num;
+
+	//cout << getSumOfDigits(long long num) << endl;
+
+	// 20
+	//int num, range;
+	//cin >> num >> range;
+
+	//cout << boolalpha << isPrime(num);
+
+	//getPrimeNumbersInRange(range);
+
+	//cout << (isEqualToSumOfPrimeNumbers(num) ? "yes" : "no") << endl;
+
+	// 21
+	//int num;
+	//cin >> num;
+
+	//getFactorization(num);
+
+	// 22
+	/*long long num;
+	cin >> num;
+
+	cout << getSumOfDigits(num) << endl;*/
+
+	// 23
+	
 }
