@@ -3,6 +3,7 @@
 using namespace std;
 
 const int ARRAY_SIZE = 3;
+const int MAX_SIEVE_SIZE = 1000;
 
 void readArr(int* arr, int size)
 {
@@ -10,6 +11,17 @@ void readArr(int* arr, int size)
 	{
 		cin >> arr[i];
 	}
+}
+
+void fillSieve(bool* primeArr, int range) {
+	for (int i = 0; i <= range; i++)
+	{
+		primeArr[i] = true;
+	}
+
+	// Not prime by definition
+	primeArr[0] = false;
+	primeArr[1] = false;
 }
 
 void printArr(int* arr, int size) {
@@ -96,6 +108,36 @@ void bubbleSort(int* arr, int size) {
 	}
 }
 
+/// <summary>
+/// This method finds all primes via Sieve of Eratostenes
+/// </summary>
+/// <param name="arr">The input array</param>
+/// <param name="size">Array size</param>
+/// <param name="upperBound">Position of last element in array</param>
+void findAllPrimes(bool* primeArr, int upperBound) {
+	// Iterate from 2 to sqrt(upperBound)
+	for (int i = 2; i * i <= upperBound; i++)
+	{
+		if (primeArr[i])
+		{
+			// Mark all prime's multiples as non-prime
+			for (int j = i * i; j <= upperBound; j += i)
+			{
+				primeArr[j] = false;
+			}
+		}
+	}
+
+	// Print all primes
+	for (int i = 2; i <= upperBound; i++)
+	{
+		if (primeArr[i])
+		{
+			cout << i << " ";
+		}
+	}
+}
+
 int main()
 {
 	// Printing an array
@@ -130,4 +172,12 @@ int main()
 	//readArr(arr, ARRAY_SIZE);
 	//bubbleSort(arr, ARRAY_SIZE);
 	//printArr(arr, ARRAY_SIZE);
+
+	// Sieve of Erathostenes
+	/*int upperBound;
+	cin >> upperBound;
+
+	bool primeArr[MAX_SIEVE_SIZE];
+	fillSieve(primeArr, upperBound);
+	findAllPrimes(primeArr, upperBound);*/
 }
