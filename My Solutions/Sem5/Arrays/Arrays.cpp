@@ -120,7 +120,7 @@ void findAllPrimes(bool* primeArr, int upperBound) {
 	{
 		if (primeArr[i])
 		{
-			// Mark all prime's multiples as non-prime
+			// Mark all prime multiples as non-prime
 			for (int j = i * i; j <= upperBound; j += i)
 			{
 				primeArr[j] = false;
