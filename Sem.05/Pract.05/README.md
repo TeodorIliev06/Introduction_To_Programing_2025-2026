@@ -99,6 +99,12 @@ int main()
 }
 ```
 
+## Pointers visualized
+![Pointers visualized](https://i.redd.it/my-new-favorite-way-to-explain-pointers-to-newbies-v0-m9p5757l45i91.jpg?width=1709&format=pjpg&auto=webp&s=3a2806c2092e2e17bd2ae6704ee62b240ce78a9e)
+
+## Dereferencing
+![Dereferencing](https://i.redd.it/my-new-favorite-way-to-explain-pointers-to-newbies-v0-5ta9tgzi45i91.png?width=498&format=png&auto=webp&s=06ce9b86ceb6d6ffc06a6c005cd7922e50873806)
+
 ﻿
 ## Задачи
 
