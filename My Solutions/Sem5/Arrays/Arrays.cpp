@@ -33,8 +33,6 @@ void printArr(int* arr, int size) {
 
 int linearSearch(int* arr, int key, int size)
 {
-	readArr(arr, size);
-
 	for (int i = 0; i < size; i++)
 	{
 		if (key == arr[i])
@@ -53,8 +51,6 @@ void swap(int& firstNum, int& secondNum) {
 }
 
 void reverseArr(int* arr, int size) {
-	readArr(arr, size);
-
 	for (int i = 0; i < size / 2; i++)
 	{
 		swap(arr[i], arr[size - 1 - i]);
@@ -147,25 +143,27 @@ int main()
 	//printArr(arr, ARRAY_SIZE);
 
 	// Linear search
-	/*int arr[ARRAY_SIZE];
-	int key;
-	cin >> key;
+	//int arr[ARRAY_SIZE];
+	//int key;
+	//cin >> key;
 
-	cout << "The position is: " << linearSearch(arr, key, ARRAY_SIZE) << endl;*/
+	//readArr(arr, ARRAY_SIZE);
+	//cout << "The position is: " << linearSearch(arr, key, ARRAY_SIZE) << endl;
 
 	// Array reversal
 	//int arr[ARRAY_SIZE];
 
+	//readArr(arr, ARRAY_SIZE);
 	//reverseArr(arr, ARRAY_SIZE);
 	//printArr(arr, ARRAY_SIZE);
 
 	// Binary search
-	/*int arr[ARRAY_SIZE];
-	int key;
-	cin >> key;
+	//int arr[ARRAY_SIZE];
+	//int key;
+	//cin >> key;
 
-	readArr(arr, ARRAY_SIZE);
-	cout << binarySearch(arr, ARRAY_SIZE, key);*/
+	//readArr(arr, ARRAY_SIZE);
+	//cout << binarySearch(arr, ARRAY_SIZE, key);
 
 	// Bubble sort
 	//int arr[ARRAY_SIZE];
