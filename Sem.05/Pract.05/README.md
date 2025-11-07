@@ -99,6 +99,31 @@ int main()
 }
 ```
 
+```c++
+#include <iostream>
+
+void f1(const int* arr) {
+	arr++; // fine
+	arr[0] = 5; // ERROR
+}
+
+// same as f1
+void f2(int const* arr) {
+	arr++; // fine
+	arr[0] = 5; // ERROR
+}
+
+void f3(int* const arr) {
+	arr[0] = 5; // fine
+	arr++; // ERROR
+}
+
+void f4(const int* const arr) {
+	arr++; // ERROR
+	arr[0] = 5; // ERROR
+}
+```
+
 ## Pointers vs References
 ```c++
 #include <iostream>
