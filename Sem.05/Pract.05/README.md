@@ -99,6 +99,31 @@ int main()
 }
 ```
 
+## Pointers vs References
+```c++
+#include <iostream>
+
+int main()
+{
+	int a = 5, b = 4;
+
+	// References MUST be initialized
+	int& r1 = a; // fine
+	int& r2; // ERROR
+
+
+	// Pointers have a default invalid value (nullptr)
+	int* ptr = nullptr; // fine
+	int& r2 = nullptr; // ERROR
+
+	// References CAN'T be reassigned
+	int& r3 = a;
+	r3 = b; // this will change the value of a instead of r3 starting to point to b
+	std::cout << r3 << std::endl;
+	std::cout << a;
+}
+```
+
 ## Pointers visualized
 ![Pointers visualized](https://i.redd.it/my-new-favorite-way-to-explain-pointers-to-newbies-v0-m9p5757l45i91.jpg?width=1709&format=pjpg&auto=webp&s=3a2806c2092e2e17bd2ae6704ee62b240ce78a9e)
 
