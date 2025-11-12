@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Array-Exercise.h"
 
 const int ARRAY_SIZE = 1000;
 
@@ -350,6 +351,87 @@ void customUnion(const int* firstArr, size_t firstArrSize,
 	unionSize = resultPos;
 }
 
+void mergeArrays(const int* firstArr, size_t firstArrSize,
+	const int* secondArr, size_t secondArrSize, int* result, size_t& mergeSize) {
+	size_t firstPos = 0, secondPos = 0, resultPos = 0;
+
+	while (firstPos < firstArrSize &&
+		secondPos < secondArrSize)
+	{
+		if (firstArr[firstPos] < secondArr[secondPos])
+		{
+			result[resultPos++] = firstArr[firstPos++];
+		}
+		else if (secondArr[secondPos] < firstArr[firstPos])
+		{
+			result[resultPos++] = secondArr[secondPos++];
+		}
+		else // Equal, skip duplicates
+		{
+			result[resultPos++] = firstArr[firstPos];
+			firstPos++;
+			secondPos++;
+		}
+	}
+
+	// Add the remaining elements correspondingly
+	while (firstPos < firstArrSize)
+	{
+		result[resultPos++] = firstArr[firstPos++];
+	}
+
+	while (secondPos < secondArrSize)
+	{
+		result[resultPos++] = secondArr[secondPos++];
+	}
+
+	mergeSize = resultPos;
+}
+
+bool areLinearlyDependent(const int* firstArr, size_t firstArrSize,
+	const int* secondArr, size_t secondArrSize)
+{
+	if (firstArrSize != secondArrSize)
+	{
+		return false;
+	}
+
+	double ratio = (double)firstArr[0] / secondArr[0];
+
+	for (size_t i = 0; i < firstArrSize; i++)
+	{
+		if (firstArr[i] / secondArr[i] != ratio)
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+bool isSubArray(const int* firstArr, size_t firstArrSize,
+	const int* secondArr, size_t secondArrSize) {
+	for (size_t i = 0; i <= firstArrSize - secondArrSize; i++)
+	{
+		bool isValid = true;
+		for (size_t j = 0; j < secondArrSize; j++)
+		{
+			if (firstArr[i+j] != secondArr[j])
+			{
+				isValid = false;
+				break;
+			}
+		}
+
+		if (isValid)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 int main()
 {
 	// 1
@@ -490,4 +572,64 @@ int main()
 
 	std::cout << "Union: ";
 	printArr(unionArr, unionSize);*/
+
+	// 11
+	//int firstArr[ARRAY_SIZE], secondArr[ARRAY_SIZE];
+
+	//size_t firstArrSize, secondArrSize;
+
+	//std::cout << "Please enter first sequence size" << std::endl;
+	//std::cin >> firstArrSize;
+	//std::cout << "Please enter first sequence of numbers" << std::endl;
+	//readArr(firstArr, firstArrSize);
+
+	//std::cout << "Please enter second sequence size" << std::endl;
+	//std::cin >> secondArrSize;
+	//std::cout << "Please enter second sequence of numbers" << std::endl;
+	//readArr(secondArr, secondArrSize);
+
+	//bubbleSort(firstArr, firstArrSize);
+	//bubbleSort(secondArr, secondArrSize);
+
+	//int mergeArr[2 * ARRAY_SIZE];
+	//size_t mergeSize = 0;
+
+	//mergeArrays(firstArr, firstArrSize, secondArr, secondArrSize, mergeArr, mergeSize);
+	//printArr(mergeArr, mergeSize);
+
+	// 12
+	/*int firstArr[ARRAY_SIZE], secondArr[ARRAY_SIZE];
+
+	size_t firstArrSize, secondArrSize;
+
+	std::cout << "Please enter first sequence size" << std::endl;
+	std::cin >> firstArrSize;
+	std::cout << "Please enter first sequence of numbers" << std::endl;
+	readArr(firstArr, firstArrSize);
+
+	std::cout << "Please enter second sequence size" << std::endl;
+	std::cin >> secondArrSize;
+	std::cout << "Please enter second sequence of numbers" << std::endl;
+	readArr(secondArr, secondArrSize);
+
+	std::cout << std::boolalpha <<
+		(areLinearlyDependent(firstArr, firstArrSize, secondArr, secondArrSize) ? "yes" : "no") << std::endl;*/
+
+	// 13
+	/*int firstArr[ARRAY_SIZE], secondArr[ARRAY_SIZE];
+
+	size_t firstArrSize, secondArrSize;
+
+	std::cout << "Please enter first sequence size" << std::endl;
+	std::cin >> firstArrSize;
+	std::cout << "Please enter first sequence of numbers" << std::endl;
+	readArr(firstArr, firstArrSize);
+
+	std::cout << "Please enter second sequence size" << std::endl;
+	std::cin >> secondArrSize;
+	std::cout << "Please enter second sequence of numbers" << std::endl;
+	readArr(secondArr, secondArrSize);
+
+	std::cout << std::boolalpha <<
+		(isSubArray(firstArr, firstArrSize, secondArr, secondArrSize) ? "true" : "false") << std::endl;*/
 }
