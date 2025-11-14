@@ -2,6 +2,30 @@
 
 const size_t MAX_SIZE = 100;
 
+void readMatrix(int matrix[][MAX_SIZE], size_t n, size_t m) {
+	for (size_t i = 0; i < n; i++)
+	{
+		for (size_t j = 0; j < m; j++)
+		{
+			std::cin >> matrix[i][j];
+		}
+	}
+}
+
+void printMatrix(const int matrix[][MAX_SIZE], size_t n, size_t m) {
+	if (!matrix)
+		return;
+
+	for (size_t i = 0; i < n; i++)
+	{
+		for (size_t j = 0; j < m; j++)
+		{
+			std::cout << matrix[i][j] << " ";
+		}
+		std::cout << std::endl;
+	}
+}
+
 int getMinEl(const int matrix[][MAX_SIZE], size_t n, size_t m)
 {
 	if (!matrix)
@@ -207,38 +231,19 @@ void multiplyMatrices(const int matrix1[][MAX_SIZE], size_t r1, size_t c1,
 	}
 }
 
-void readMatrix(int matrix[][MAX_SIZE], size_t n, size_t m) {
-	for (size_t i = 0; i < n; i++)
-	{
-		for (size_t j = 0; j < m; j++)
-		{
-			std::cin >> matrix[i][j];
-		}
-	}
-}
-
 int main()
 {
-	int matrix[MAX_SIZE][MAX_SIZE];
+	int matrix1[MAX_SIZE][MAX_SIZE];
 	int matrix2[MAX_SIZE][MAX_SIZE];
-	int result[MAX_SIZE][MAX_SIZE];
-	int n1, m1, n2, m2;
-	std::cin >> n1 >> m1;
+	int result[MAX_SIZE][MAX_SIZE] = {};
+	int r1, c1, r2, c2;
 
-	readMatrix(matrix, n1, m1);
+	std::cin >> r1 >> c1;
+	readMatrix(matrix1, r1, c1);
 
-	std::cin >> n2 >> m2;
-	readMatrix(matrix, n2, m2);
+	std::cin >> r2 >> c2;
+	readMatrix(matrix2, r2, c2);
 
-	multiplyMatrices(matrix, n1, m1, matrix2, n2, m2, result);
-
-	for (size_t i = 0; i < n1; i++)
-	{
-		for (size_t j = 0; j < m2; j++)
-		{
-			std::cout << matrix[i][j] << " ";
-		}
-		std::cout << std::endl;
-	}
-
+	multiplyMatrices(matrix1, r1, c1, matrix2, r2, c2, result);
+	printMatrix(result, r1, c2);
 }
