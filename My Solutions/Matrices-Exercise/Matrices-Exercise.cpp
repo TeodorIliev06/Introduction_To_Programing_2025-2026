@@ -1,7 +1,7 @@
 #include <iostream>
 
-const size_t MATRIX_ROW_SIZE = 4;
-const size_t MATRIX_COL_SIZE = 4;
+const size_t MATRIX_ROW_SIZE = 3;
+const size_t MATRIX_COL_SIZE = 3;
 
 void readMatrix(int matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) {
 	for (size_t row = 0; row < rowSize; row++)
@@ -190,6 +190,61 @@ bool isMagicSquare(int matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize
 	return true;
 }
 
+void sumMatrices(int firstMatrix[][MATRIX_COL_SIZE],
+	int secondMatrix[][MATRIX_COL_SIZE],
+	int outputMatrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) {
+	for (size_t row = 0; row < rowSize; row++)
+	{
+		for (size_t col = 0; col < colSize; col++)
+		{
+			outputMatrix[row][col] = firstMatrix[row][col] + secondMatrix[row][col];
+		}
+	}
+}
+
+void multiplyMatrixByANumber(int matrix[][MATRIX_COL_SIZE], int multiplier,
+	int outputMatrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) {
+	for (size_t row = 0; row < rowSize; row++)
+	{
+		for (size_t col = 0; col < colSize; col++)
+		{
+			outputMatrix[row][col] = matrix[row][col] * multiplier;
+		}
+	}
+}
+
+void multiplyMatrices(int firstMatrix[][MATRIX_COL_SIZE],
+	int secondMatrix[][MATRIX_COL_SIZE], int outputMatrix[][MATRIX_COL_SIZE],
+	size_t firstMatrixRowSize, size_t firstMatrixColSize,
+	size_t secondMatrixRowSize, size_t secondMatrixColSize,
+	size_t* outRowSize, size_t* outColSize) {
+	if (firstMatrixColSize != secondMatrixRowSize)
+	{
+		return;
+	}
+
+	*outRowSize = firstMatrixRowSize;
+	*outColSize = secondMatrixColSize;
+
+	if (*outRowSize > MATRIX_ROW_SIZE ||
+		*outColSize > MATRIX_COL_SIZE)
+	{
+		return;
+	}
+
+	for (size_t i = 0; i < firstMatrixRowSize; i++)
+	{
+		for (size_t j = 0; j < secondMatrixColSize; j++)
+		{
+			outputMatrix[i][j] = 0;
+			for (size_t k = 0; k < firstMatrixColSize; k++)
+			{
+				outputMatrix[i][j] += firstMatrix[i][k] * secondMatrix[k][j];
+			}
+		}
+	}
+}
+
 int main()
 {
 	// 1
@@ -232,4 +287,48 @@ int main()
 
 	//std::cout << (isMagicSquare(matrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE)
 	//	? "yes" : "no") << std::endl;
+
+	// 7
+	//  7.1
+	//int firstMatrix[MATRIX_ROW_SIZE][MATRIX_COL_SIZE];
+	//readMatrix(firstMatrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
+
+	//int secondMatrix[MATRIX_ROW_SIZE][MATRIX_COL_SIZE];
+	//readMatrix(secondMatrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
+
+	//int outputMatrix[MATRIX_ROW_SIZE][MATRIX_COL_SIZE];
+
+	//sumMatrices(firstMatrix, secondMatrix, outputMatrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
+
+	//printMatrix(outputMatrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
+
+	//  7.2
+	//int firstMatrix[MATRIX_ROW_SIZE][MATRIX_COL_SIZE];
+	//readMatrix(firstMatrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
+
+	//std::cout << "Please enter a multiplier: ";
+	//int multiplier;
+	//std::cin >> multiplier;
+
+	//int outputMatrix[MATRIX_ROW_SIZE][MATRIX_COL_SIZE];
+
+	//multiplyMatrixByANumber(firstMatrix, multiplier, outputMatrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
+
+	//printMatrix(outputMatrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
+
+	// 8
+	//int firstMatrix[MATRIX_ROW_SIZE][MATRIX_COL_SIZE];
+	//readMatrix(firstMatrix, 5, 2);
+
+	//int secondMatrix[MATRIX_ROW_SIZE][MATRIX_COL_SIZE];
+	//readMatrix(secondMatrix, 2, 3);
+
+	//int outputMatrix[MATRIX_ROW_SIZE][MATRIX_COL_SIZE];
+	//size_t outRowSize, outColSize;
+
+	//multiplyMatrices(firstMatrix, secondMatrix, outputMatrix,
+	//	5, 2, 2, 3, &outRowSize, &outColSize);
+
+	//printMatrix(outputMatrix, outRowSize, outColSize);
+
 }
