@@ -13,6 +13,16 @@ void readMatrix(int matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) {
 	}
 }
 
+void readMatrix(double matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) {
+	for (size_t row = 0; row < rowSize; row++)
+	{
+		for (size_t col = 0; col < colSize; col++)
+		{
+			std::cin >> matrix[row][col];
+		}
+	}
+}
+
 void printMatrix(int matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) {
 	for (size_t row = 0; row < rowSize; row++)
 	{
@@ -28,6 +38,16 @@ void swap(int& firstNum, int& secondNum) {
 	int temp = firstNum;
 	firstNum = secondNum;
 	secondNum = temp;
+}
+
+void swap(double& firstNum, double& secondNum) {
+	double temp = firstNum;
+	firstNum = secondNum;
+	secondNum = temp;
+}
+
+int abs(int num) {
+	return num > 0 ? num : -num;
 }
 
 int getMin(int matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) {
@@ -245,6 +265,60 @@ void multiplyMatrices(int firstMatrix[][MATRIX_COL_SIZE],
 	}
 }
 
+void printInSpiral(int matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) {
+	int top = 0, bottom = rowSize - 1;
+	int left = 0, right = colSize - 1;
+
+	while (top <= bottom && left <= right)
+	{
+		// Print top row
+		for (size_t col = left; col <= right; col++)
+		{
+			std::cout << matrix[top][col] << " ";
+		}
+		top++;
+
+		// Print right col;
+		for (size_t row = top; row <= bottom; row++)
+		{
+			std::cout << matrix[row][right] << " ";
+		}
+		right--;
+
+		// Print bottom row (right to left)
+		if (top <= bottom)
+		{
+			for (int col = right; col >= left; col--)
+			{
+				std::cout << matrix[bottom][col] << " ";
+			}
+			bottom--;
+		}
+
+		// Print left col (bottom to top)
+		if (left <= right)
+		{
+			for (int row = bottom; row >= top; row--)
+			{
+				std::cout << matrix[row][left] << " ";
+			}
+			left++;
+		}
+	}
+}
+
+void rotateRight(int matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) {
+	transpone(matrix, rowSize, colSize);
+
+	for (size_t row = 0; row < rowSize; row++)
+	{
+		for (size_t col = 0; col < colSize / 2; col++)
+		{
+			swap(matrix[row][col], matrix[row][colSize - 1 - col]);
+		}
+	}
+}
+
 int main()
 {
 	// 1
@@ -330,5 +404,18 @@ int main()
 	//	5, 2, 2, 3, &outRowSize, &outColSize);
 
 	//printMatrix(outputMatrix, outRowSize, outColSize);
+
+	// 9
+	//int matrix[MATRIX_ROW_SIZE][MATRIX_COL_SIZE];
+	//readMatrix(matrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
+
+	//printInSpiral(matrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
+
+	// 10
+	//int matrix[MATRIX_ROW_SIZE][MATRIX_COL_SIZE];
+	//readMatrix(matrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
+
+	//rotateRight(matrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
+	//printMatrix(matrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
 
 }
