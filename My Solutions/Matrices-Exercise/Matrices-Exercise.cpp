@@ -1,7 +1,8 @@
 #include <iostream>
+#include <iomanip>
 
 const size_t MATRIX_ROW_SIZE = 3;
-const size_t MATRIX_COL_SIZE = 3;
+const size_t MATRIX_COL_SIZE = 4;
 
 void readMatrix(int matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) {
 	for (size_t row = 0; row < rowSize; row++)
@@ -319,6 +320,68 @@ void rotateRight(int matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) 
 	}
 }
 
+int solveLinearSystem(double matrix[][MATRIX_COL_SIZE],
+	size_t rowSize, size_t colSize, double* solutions) {
+	const double EPSILON = 1e-9;
+
+	for (size_t currentRow = 0; currentRow < rowSize; currentRow++) {
+		// Find and swap pivot
+		size_t maxRow = currentRow;
+		for (size_t row = currentRow + 1; row < rowSize; row++) {
+			if (abs(matrix[row][currentRow]) > abs(matrix[maxRow][currentRow])) {
+				maxRow = row;
+			}
+		}
+
+		if (maxRow != currentRow) {
+			for (size_t col = 0; col < colSize; col++) {
+				swap(matrix[currentRow][col], matrix[maxRow][col]);
+			}
+		}
+
+		// Check for infinite / no solutions
+		if (abs(matrix[currentRow][currentRow]) < EPSILON) {
+			return (abs(matrix[currentRow][colSize - 1]) < EPSILON) ? 0 : -1;
+		}
+
+		// Eliminate below
+		for (size_t row = currentRow + 1; row < rowSize; row++) {
+			double factor = (double)matrix[row][currentRow] / matrix[currentRow][currentRow];
+
+			for (size_t col = currentRow; col < colSize; col++) {
+				matrix[row][col] -= factor * matrix[currentRow][col];
+			}
+		}
+	}
+
+	// Back substitution
+	for (int row = rowSize - 1; row >= 0; row--) {
+		solutions[row] = matrix[row][colSize - 1];
+
+		for (size_t col = row + 1; col < rowSize; col++) {
+			solutions[row] -= matrix[row][col] * solutions[col];
+		}
+
+		solutions[row] /= matrix[row][row];
+	}
+
+	return 1;
+}
+
+void printSystemSolutions(double* solutions, size_t rowSize) {
+	for (size_t row = 0; row < rowSize; row++)
+	{
+		if (row > 0)
+		{
+			std::cout << " ";
+		}
+
+		std::cout << std::fixed << std::setprecision(2) << solutions[row];
+	}
+
+	std::cout << std::endl;
+}
+
 int main()
 {
 	// 1
@@ -418,4 +481,25 @@ int main()
 	//rotateRight(matrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
 	//printMatrix(matrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
 
+	// 12
+	double matrix[MATRIX_ROW_SIZE][MATRIX_COL_SIZE];
+	readMatrix(matrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
+
+	double solutions[MATRIX_ROW_SIZE];
+
+	int result = solveLinearSystem(matrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE, solutions);
+
+	if (result == 1)
+	{
+		std::cout << "Solution: ";
+		printSystemSolutions(solutions, MATRIX_ROW_SIZE);
+	}
+	else if (result == 0)
+	{
+		std::cout << "Infinite solutions." << std::endl;
+	}
+	else
+	{
+		std::cout << "No solutions." << std::endl;
+	}
 }
