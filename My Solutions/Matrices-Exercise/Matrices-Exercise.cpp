@@ -4,6 +4,11 @@
 const size_t MATRIX_ROW_SIZE = 3;
 const size_t MATRIX_COL_SIZE = 4;
 
+const char ROW_TRAVERSAL = 'r';
+const char COL_TRAVERSAL = 'c';
+const int NORMAL_ORDER = 0;
+const int REVERSE_ORDER = 1;
+
 void readMatrix(int matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) {
 	for (size_t row = 0; row < rowSize; row++)
 	{
@@ -30,6 +35,39 @@ void printMatrix(int matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) 
 		for (size_t col = 0; col < colSize; col++)
 		{
 			std::cout << matrix[row][col] << " ";
+		}
+		std::cout << std::endl;
+	}
+}
+
+void printReversedMatrix(int matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) {
+	for (size_t row = 0; row < rowSize; row++)
+	{
+		for (int col = colSize - 1; col >= 0; col--)
+		{
+			std::cout << matrix[row][col] << " ";
+		}
+		std::cout << std::endl;
+	}
+}
+
+void printMatrixByCols(int matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) {
+	for (size_t row = 0; row < rowSize; row++)
+	{
+		for (size_t col = 0; col < colSize; col++)
+		{
+			std::cout << matrix[col][row] << " ";
+		}
+		std::cout << std::endl;
+	}
+}
+
+void printReversedMatrixByCols(int matrix[][MATRIX_COL_SIZE], size_t rowSize, size_t colSize) {
+	for (size_t row = 0; row < rowSize; row++)
+	{
+		for (int col = colSize - 1; col >= 0; col--)
+		{
+			std::cout << matrix[col][row] << " ";
 		}
 		std::cout << std::endl;
 	}
@@ -482,7 +520,7 @@ int main()
 	//printMatrix(matrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
 
 	// 12
-	double matrix[MATRIX_ROW_SIZE][MATRIX_COL_SIZE];
+	/*double matrix[MATRIX_ROW_SIZE][MATRIX_COL_SIZE];
 	readMatrix(matrix, MATRIX_ROW_SIZE, MATRIX_COL_SIZE);
 
 	double solutions[MATRIX_ROW_SIZE];
@@ -501,5 +539,44 @@ int main()
 	else
 	{
 		std::cout << "No solutions." << std::endl;
+	}*/
+
+	// Bonus
+	int matrix[MATRIX_ROW_SIZE][MATRIX_COL_SIZE];
+	size_t rows, cols;
+	std::cout << "Enter rows and cols" << std::endl;
+	std::cin >> rows >> cols;
+
+	readMatrix(matrix, rows, cols);
+
+	char rowOrColTraversal;
+	std::cout << "Enter [r] to traverse by rows or [c] to traverse by cols" << std::endl;
+	std::cin >> rowOrColTraversal;
+
+	int normalOrReverseOrder;
+	std::cout << "Enter [0] to traverse normally or [1] to traverse in reverse" << std::endl;
+	std::cin >> normalOrReverseOrder;
+
+	if (rowOrColTraversal == ROW_TRAVERSAL)
+	{
+		if (normalOrReverseOrder == NORMAL_ORDER)
+		{
+			printMatrix(matrix, rows, cols);
+		}
+		else if (normalOrReverseOrder == REVERSE_ORDER)
+		{
+			printReversedMatrix(matrix, rows, cols);
+		}
+	}
+	else if (rowOrColTraversal == COL_TRAVERSAL)
+	{
+		if (normalOrReverseOrder == NORMAL_ORDER)
+		{
+			printMatrixByCols(matrix, rows, cols);
+		}
+		else if (normalOrReverseOrder == REVERSE_ORDER)
+		{
+			printReversedMatrixByCols(matrix, rows, cols);
+		}
 	}
 }
