@@ -137,6 +137,44 @@ char* getSortedLowerLetters(char* input) {
 	return output;
 }
 
+void readMatrix(int n, int** matrix)
+{
+	for (size_t i = 0; i < n; i++)
+	{
+		matrix[i] = new int[i];
+
+		for (size_t j = 0; j < n; j++)
+		{
+			std::cin >> matrix[i][j];
+		}
+	}
+}
+
+void deleteMatrix(int n, int** matrix) {
+	for (size_t i = 0; i < n; i++)
+	{
+		delete[] matrix[i];
+	}
+
+	delete[] matrix;
+}
+
+int getSumAbovePrimDiag(int n, int** matrix) {
+	int sum = 0;
+	for (size_t i = 0; i < n; i++)
+	{
+		for (size_t j = 0; j < n; j++)
+		{
+			if (i < j)
+			{
+				sum += matrix[i][j];
+			}
+		}
+	}
+
+	return sum;
+}
+
 int main()
 {
 #pragma region Examples
@@ -203,4 +241,46 @@ int main()
 	delete[] output;*/
 #pragma endregion
 
+#pragma region Exercises
+	// 1
+	/*int n;
+	std::cin >> n;
+	int* arr = new int[n];*/
+
+	// 2
+	/*int n, m;
+	std::cin >> n >> m;
+	int** arr = new int* [n];
+
+	for (size_t i = 0; i < n; i++)
+	{
+		arr[i] = new int[m];
+	}*/
+
+	// 3
+	/*int n, m, q;
+	std::cin >> n >> m >> q;
+	int*** arr = new int** [n];
+
+	for (size_t i = 0; i < n; i++)
+	{
+		arr[i] = new int*[m];
+		for (size_t j = 0; j < m; j++)
+		{
+			arr[i][j] = new int[q];
+		}
+	}*/
+
+	// 4
+	/*int n;
+	std::cin >> n;
+
+	int** matrix = new int* [n];
+	readMatrix(n, matrix);
+
+	int sum = getSumAbovePrimDiag(n, matrix);
+	std::cout << sum << std::endl;
+
+	deleteMatrix(n, matrix);*/
+#pragma endregion
 }
