@@ -137,11 +137,11 @@ char* getSortedLowerLetters(char* input) {
 	return output;
 }
 
-void readMatrix(int n, int** matrix)
+void readMatrix(int n, int m, int** matrix)
 {
 	for (size_t i = 0; i < n; i++)
 	{
-		matrix[i] = new int[i];
+		matrix[i] = new int[m];
 
 		for (size_t j = 0; j < n; j++)
 		{
@@ -150,7 +150,36 @@ void readMatrix(int n, int** matrix)
 	}
 }
 
+void readMatrix(int n, int** matrix)
+{
+	for (int i = 0; i < n; i++)
+	{
+		matrix[i] = new int[n];
+
+		for (int j = 0; j < n; j++)
+		{
+			std::cin >> matrix[i][j];
+		}
+	}
+}
+
+void printMatrix(int** matrix, int n, int m) {
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			std::cout << matrix[i][j] << " ";
+		}
+		std::cout << std::endl;
+	}
+}
+
 void deleteMatrix(int n, int** matrix) {
+	if (!matrix)
+	{
+		return;
+	}
+
 	for (size_t i = 0; i < n; i++)
 	{
 		delete[] matrix[i];
