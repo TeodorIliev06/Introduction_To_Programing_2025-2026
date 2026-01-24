@@ -204,6 +204,57 @@ int getSumAbovePrimDiag(int n, int** matrix) {
 	return sum;
 }
 
+int** transposeMatrix(int** matrix, int n, int m)
+{
+	int** transposed = new int* [m];
+
+	for (size_t i = 0; i < m; i++)
+	{
+		transposed[i] = new int[n];
+	}
+
+	for (size_t i = 0; i < n; i++)
+	{
+		for (size_t j = 0; j < m; j++)
+		{
+			transposed[j][i] = matrix[i][j];
+		}
+	}
+
+	return transposed;
+}
+
+int** multiplyMatrices(int** first, int** second, int firstRows, int firstCols,
+	int secondRows, int secondCols) {
+	if (!first || !second)
+	{
+		return nullptr;
+	}
+
+	if (firstCols != secondRows)
+	{
+		return nullptr;
+	}
+
+	int outRows = firstRows, outCols = secondCols;
+	int** result = new int* [outRows];
+
+	for (int i = 0; i < firstRows; i++)
+	{
+		result[i] = new int[outCols];
+		for (int j = 0; j < secondCols; j++)
+		{
+			result[i][j] = 0;
+			for (int k = 0; k < firstCols; k++)
+			{
+				result[i][j] += first[i][k] * second[k][j];
+			}
+		}
+	}
+
+	return result;
+}
+
 int main()
 {
 #pragma region Examples
@@ -311,5 +362,37 @@ int main()
 	std::cout << sum << std::endl;
 
 	deleteMatrix(n, matrix);*/
+
+	// 5
+	/*int n, m;
+	std::cin >> n >> m;
+	int** matrix = new int* [n];
+	readMatrix(n, m, matrix);
+
+	int** transposed = transposeMatrix(matrix, n, m);
+	printMatrix(transposed, m, n);
+
+	deleteMatrix(n, matrix);
+	deleteMatrix(m, transposed);*/
+
+	// 6
+	int n, m, p, q;
+	std::cin >> n >> m >> p >> q;
+
+	int** firstMatrix = new int* [n];
+	int** secondMatrix = new int* [p];
+	readMatrix(n, m, firstMatrix);
+	readMatrix(p, q, secondMatrix);
+
+	int** outMatrix = multiplyMatrices(firstMatrix, secondMatrix, n, m, p, q);
+
+	if (outMatrix)
+	{
+		printMatrix(outMatrix, n, q);
+		deleteMatrix(n, outMatrix);
+	}
+
+	deleteMatrix(n, firstMatrix);
+	deleteMatrix(p, secondMatrix);
 #pragma endregion
 }
