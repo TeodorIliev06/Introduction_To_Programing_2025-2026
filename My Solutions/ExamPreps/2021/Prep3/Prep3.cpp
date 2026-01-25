@@ -100,7 +100,7 @@ int main()
 	delete[] src;*/
 
 	// 3
-	int size;
+	/*int size;
 	std::cout << "Please enter a valid size: ";
 	std::cin >> size;
 	std::cin.ignore();
@@ -112,5 +112,5 @@ int main()
 	readArr(second, size);
 
 	int* letters = countLetters(first, second, size);
-	std::cout << letters[0] << ' ' << letters[1];
+	std::cout << letters[0] << ' ' << letters[1];*/
 }
